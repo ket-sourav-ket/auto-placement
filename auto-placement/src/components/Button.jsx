@@ -6,10 +6,11 @@ const StyledButton = styled.button`
     border-radius: 3px;
     padding: 3px;
     display: flex;
+    
 `
-const Button = () => {
+const Button = ({children}) => {
   return (
-    <div>Button</div>
+    <StyledButton>{children}</StyledButton>
   )
 }
 
