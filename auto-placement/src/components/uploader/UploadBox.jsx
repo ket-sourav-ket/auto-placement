@@ -40,9 +40,9 @@ function UploadBox() {
     const [query, setQuery] = useState(null);
   return (
     <div className='upload-container'>
-        <form onSubmit={()=>setTxtDocument(null)} method='post' encType='multipart/form-data' style={{display: 'flex', width: '95%' , flexDirection: 'column' ,
+        <form onSubmit={()=>setTxtDocument(null)} method='post' encType='multipart/form-data' style={{display: 'flex', flexBasis: '95%' , flexDirection: 'column' ,
         justifyContent: 'center' , alignItems: 'center', 
-        border: '2px dashed #1475cf' , height: '300px', cursor: 'pointer', 
+        border: '2px dashed #1475cf' , flexGrow : "1" , cursor: 'pointer', 
         borderRadius:'5px' , backgroundColor : 'rgb(255, 244, 240)'
         }}
         onClick={() => document.querySelector(".input-field").click()}
@@ -71,7 +71,8 @@ function UploadBox() {
         </form>
 
         <div style={{display : 'flex' ,
-                    flexDirection : 'row'
+                    flexDirection : 'row' ,
+                    
         }}>
         <section className='uploaded-row'>
             <AiFillFileImage color='#1475cf' />
