@@ -4,18 +4,20 @@ import promo from '../assets/infoImage.png'
 
 const StyledInfoContainer = styled.div`
     padding-left : 3%;
-    padding-right : 3%;
+    padding-right : 2%;
     display: grid;
-    width: 60%;
+    width: 30%;
     height: auto;
     border-radius: 5px;
-    margin: 5px;
+    margin: 45px;
+    padding-top: 50px;
+    align-self: end;
     background-color: #dcdee0;
     box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
     grid-template-columns: 2fr 3fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas: 
-    'main-info right-img'
+    'main-info main-info'
     'info info';
 `
 
@@ -55,12 +57,13 @@ const StyledSubInfo = styled.div`
 const InfoBox = () => {
   return (
     <StyledInfoContainer>
-            <StyledImage src={promo} alt='promo'/>
+           
             <StyledInfo>
               seamless coordination of placement activities. Automate emails and data updates and view history of
               company activities all from one place. Secure and reliable placement solution which is easy to use and maintain.
             </StyledInfo>
-            <StyledSubInfoContainer>
+            
+           {/* <StyledSubInfoContainer>
               <StyledSubInfo>
                 <StyledHeadBar/>
                 <h3>Automation</h3>
@@ -78,7 +81,7 @@ const InfoBox = () => {
                 <h3>Manage</h3>
                 <p>Manage company data and activity seamlessly</p>
               </StyledSubInfo>
-            </StyledSubInfoContainer>
+            </StyledSubInfoContainer> */}
 
     </StyledInfoContainer>
   )

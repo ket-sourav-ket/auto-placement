@@ -8,8 +8,8 @@ const StyledNavContainer = styled.nav`
     flex-direction: row;
     gap: 10px;
     align-items: flex-start;
-    border-radius : 15px;
-    background-color : #dcdee0;
+    border-radius : 5px;
+    background-color : #024545;
     padding: 5px;
     
 `
@@ -23,15 +23,21 @@ const StyledLogo = styled.img`
 
 const StyledLinks = styled.a`
     flex-basis: 15%;
+    color: white;
     align-self: center;
 `
 const StyledNavButton = styled(StyledButton)`
   height: 10%;
+  background-color: yellow;
   align-self: center;
+  border-radius: 10px;
+  padding: 10px;
+  
 `
 
 const StyledSpan = styled.span`
   margin-right : auto;
+  color: white;
   align-self : center;
 `
 const Navbar = () => {
@@ -43,7 +49,7 @@ const Navbar = () => {
         <StyledLinks>{"About Us"}</StyledLinks>
         <StyledLinks>{"Contact Us"}</StyledLinks>
         <StyledLinks>{"Placement History"}</StyledLinks>
-        <StyledNavButton>{"Login/Register"}</StyledNavButton>
+        <StyledNavButton><b>{"Login/Register"}</b></StyledNavButton>
 
     </StyledNavContainer>
   )
