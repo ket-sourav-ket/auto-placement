@@ -35,18 +35,21 @@ const Uploader = () => {
   const[fileName , setFileName] = React.useState(null);
   const inputRef = React.useRef();
   const submitRef = React.useRef();
-  const handleClick = (event) => {
+  const handleClick = (eventWrapper) => {
     inputRef.current?.click();
-    //event.stopPropagation();
+    //event.preventDefault();
+    eventWrapper.stopPropagation();
   };
   const handleSubmit = (event) =>{
     submitRef.current?.click();
-    //event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   const handleChange = (event) =>{
     setFileName(event.target.files[0]?.name);
-    //event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
   }
   return (
     <StyledUploadContainer >
@@ -65,13 +68,13 @@ const Uploader = () => {
         </>
         )
         }
-        <Form action='/' method='post' encType='multipart/form-data'>
-          <input name='file' onChange={handleChange}  ref={inputRef} type='file' accept='.docx,.ppt, .pptx,.txt,.pdf' hidden/>
+        <Form onClick={(eventWrapper)=> eventWrapper.stopPropagation()} onChange={(eventWrapper)=> eventWrapper.stopPropagation()} method='post' encType='multipart/form-data'>
+          <input name='files' onChange={handleChange}  ref={inputRef} type='file' accept='.docx,.ppt, .pptx,.txt,.pdf' hidden/>
           <button ref={submitRef} type='submit' hidden/>
         </Form>
         
       </StyledBlueBox>
-      <StyledUploadButton onClick={handleSubmit}>{"search"}</StyledUploadButton>
+      <StyledUploadButton type='button' onClick={handleSubmit}>{"search"}</StyledUploadButton>
     </StyledUploadContainer>
   )
 }

@@ -22,7 +22,7 @@ const EmailBox = ({list}) => {
     <StyledListContainer>
 
       <ul>
-        {list.map((item) => <Student key={item.objectID} name = {item.name} email={item.email} stream={item.stream}/>)}
+        {list.map((item) => <Student key={item.personal_mail} name = {item.name} email={item.personal_mail} stream={item.department}/>)}
       </ul>
 
     </StyledListContainer>

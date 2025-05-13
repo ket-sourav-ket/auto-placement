@@ -10,9 +10,9 @@ export const StyledButton = styled.button`
     justify-content: center;
     
 `
-const Button = ({children , type , name , value}) => {
+const Button = ({children , type , name , value , handleClick}) => {
   return (
-    <StyledButton name={name} value={value} type={type}>{children}</StyledButton>
+    <StyledButton onClick={handleClick} name={name} value={value} type={type}>{children}</StyledButton>
   )
 }
 

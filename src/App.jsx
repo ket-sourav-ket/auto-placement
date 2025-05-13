@@ -1,7 +1,7 @@
 import React from 'react'
 import EmailBox from './components/EmailBox'
 import Student from './components/Student'
-import UploadBox from './components/uploader/UploadBox'
+
 import styled from 'styled-components'
 import Button from './components/Button'
 import Uploader from './components/Uploader'
@@ -14,8 +14,9 @@ import CompanyBrowser from './components/CompanyBrowser'
 import { StyledHeadBar } from './components/InfoBox'
 import job1 from './assets/background1.jpg'
 import uploadImg from './assets/uploaderImg.png'
+import { PacmanLoader } from 'react-spinners'
 
-import { Outlet,Link , useLoaderData, redirect, Form , useActionData} from 'react-router-dom'
+import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'react-router-dom'
 
 
 
@@ -143,9 +144,16 @@ const UploadDiv = styled.div`
 export async function searchLoader({request , params})
 {
   let fileId = params.fileId;
-  let respone = await fetch(`/getMails?fileId=${fileId}`);
-  let mailList = await respone.text();
-  mailList = mailList?? " ";
+  let mailList = []
+  let resJson = {}
+  console.log("in search loader " + fileId);
+  if(fileId){
+  let respone = await fetch(`http://localhost:5173/api/getMails?fileId=${fileId}`);
+  resJson = await respone.json();
+  mailList = resJson.mailList;
+  }
+
+  console.log("in search loader " + resJson);
   return {mailList}
 
 }
@@ -153,19 +161,16 @@ export async function searchLoader({request , params})
 export async function searchAction({request, params})
 {
   const formData = await request.formData();
-  let response = await fetch('/upload',
+  let response = await fetch('http://localhost:5173/api/uploadFile',
         {
             method : 'POST',
-            headers: {
-                'Content-Type' : 'multipart/form-data'
-            },
             body : formData
 
         }
         
     );
   let fileId = await response.text();
- // return redirect(`search/${fileId}`);
+  return redirect('search/'+fileId);
 
 }
 
@@ -173,27 +178,36 @@ export async function sendAction({request , params})
 {
   let fileId = params.fileId;
   const formData = await request.formData();
-  let response = await fetch('/sendMails',
+  //const formObj = Object.fromEntries(formData)
+  let mailList = formData.get('mails').split(",")
+  console.log("submit data ")
+  console.log(mailList)
+  let response = await fetch('http://localhost:5173/api/sendMails',
                               {
                                 method: 'POST',
-                                headers: {
-                                            'Content-Type' : 'multipart/form-data'
-                                         },
-                                body : formData
-
+                                headers: {  "Content-Type": "application/json" },
+                                body : JSON.stringify(
+                                  {
+                                    mails : mailList,
+                                    fileId : fileId
+                                  }
+                                )
                               }
     );
     let statusM = await response.text();
-    statusM = styled ?? "fail";
-    return { statusM };
-   // return redirect(`/search/${fileId}`);
+    statusM = statusM ?? "fail";
+    alert(statusM);
+    return redirect(`/search/${fileId}`);
 }
 
 const App = () => {
-  const { statusM } = useActionData();
+  //const { statusM } = useActionData();
+
+  const navigation = useNavigation();
 
   const { mailList } = useLoaderData();
-  const list = mailList.split(',');
+  
+  console.log("in App component " + typeof mailList);
   return (
     <>
     
@@ -206,9 +220,16 @@ const App = () => {
       
       <PositionUploader> 
       <Uploader/>
-      <EmailBox list={list} />
-      <Form method='POST'>
-      <Button name='mails' value={list} type={"submit"}>Send Mail</Button>
+      <EmailBox list={mailList} />
+      <Form onChange={(event)=> event.stopPropagation()} style={{display: 'flex' , flexDirection: 'column' , alignItems: 'stretch'}} method='POST'>
+      <input name='mails' value={mailList.map((item) => item.personal_mail)} hidden />
+      {navigation.state === 'submitting'? 
+        <PacmanLoader
+          color="#55d3eb"
+          size={30}
+        /> : 
+        <Button handleClick={(event)=>event.stopPropagation()} type={"submit"}>Send Mail</Button>
+      }
       </Form>
       </PositionUploader>
 
