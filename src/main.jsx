@@ -4,6 +4,7 @@ import { createBrowserRouter , RouterProvider } from 'react-router'
 import './index.css'
 import { searchAction, searchLoader, sendAction } from './App.jsx'
 import App from './App.jsx'
+import RegForm from './components/RegForm.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 const router = createBrowserRouter([
   {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     loader: searchLoader,
     action: sendAction
+  },
+  {
+    path: "/register",
+    element: <RegForm />,
+    errorElement: <ErrorPage />
   }
 ]);
 
