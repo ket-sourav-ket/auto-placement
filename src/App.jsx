@@ -5,14 +5,13 @@ import Student from './components/Student'
 import styled from 'styled-components'
 import Button from './components/Button'
 import Uploader from './components/Uploader'
-import InfoBox from './components/InfoBox'
 import InfoBoxVertical from './components/InfoBoxVertical'
 import Footer from './components/Footer'
 import CompanyRecord from './components/CompanyRecord'
 import Navbar from './components/Navbar'
 import CompanyBrowser from './components/CompanyBrowser'
 import { StyledHeadBar } from './components/InfoBox'
-import job1 from './assets/background1.jpg'
+import job1 from './assets/gemini1.png'
 import uploadImg from './assets/uploaderImg.png'
 import { PacmanLoader } from 'react-spinners'
 
@@ -22,22 +21,9 @@ import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'reac
 
 const StyledAppContainer = styled.div`
   display: grid;
-  background-image: linear-gradient(
-    45deg,
-    hsl(168deg 82% 50%) 0%,
-    hsl(175deg 100% 42%) 8%,
-    hsl(181deg 100% 38%) 17%,
-    hsl(186deg 100% 38%) 25%,
-    hsl(190deg 100% 36%) 33%,
-    hsl(193deg 100% 33%) 42%,
-    hsl(197deg 80% 33%) 50%,
-    hsl(205deg 51% 35%) 58%,
-    hsl(214deg 36% 33%) 67%,
-    hsl(226deg 25% 29%) 75%,
-    hsl(246deg 18% 23%) 83%,
-    hsl(268deg 16% 16%) 92%,
-    hsl(291deg 13% 10%) 100%
-  );
+  /* background: #020024;
+  background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
+ /* background-image:url(${job1}); */
   grid-template-columns: 25rem 1fr 1fr;
   grid-template-rows: 4rem 16rem 1fr 0.2fr 1fr 1fr 0.4fr;
   grid-template-areas:
@@ -48,21 +34,22 @@ const StyledAppContainer = styled.div`
   'browser browser empspace'
   'record record corner'
   'footer footer footer';
-  
   border-radius: 5px
 `
 const StyledHeroImg = styled.div`
-  margin-left: 2%;
-  margin-right: 5%;
+  margin-left: 5%;
+  margin-right: 2%;
   margin-top: 0;
   margin-bottom:0;
   padding: 0;
-  border-radius: 5px;
+  border-radius: 10px;
   background-image: url(${job1});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
+  background-position: center;
   grid-area: hero-img;
+  width: 50%;
+  height: 50%;
   box-shadow: 0 .4rem .8rem #0005;
 `
 
@@ -89,13 +76,16 @@ const PositionInfoBox = styled.div`
 
 
 const PositionBrowser = styled.div`
-  margin-left: 1.8%;
+  margin-left: 5%;
+  margin-top: 5%;
   border-radius : 5px;
   grid-area : browser;
   border-style: solid;
   border-color : #dcdee0;
   height: 400px;
+  width: 140%;
   overflow-y: auto;
+  overflow-x: hidden;
 `
 const BrowserHeader = styled.div`
   margin-left: 5%;
@@ -216,7 +206,7 @@ const App = () => {
       <PositionNavBar>
       <Navbar/>
       </PositionNavBar>
-      <StyledHeroImg />
+     
       
       <PositionUploader> 
       <Uploader/>

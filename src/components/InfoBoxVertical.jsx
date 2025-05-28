@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import infoImage from '../assets/infoImage.png'
+import infoImage from '../assets/gemini2.png'
 
 const StyledInfoFlex = styled.div`
     display: flex;
@@ -9,31 +9,33 @@ const StyledInfoFlex = styled.div`
     background-color: #dcdee0;
     padding-left: 3%;
     padding-right: 3%;
+    margin-top: 5%;
     align-items: center;
     justify-content: space-evenly;
     box-shadow: 0 .4rem .8rem #0005;
 `
 
 const StyledImage = styled.img`
-    margin-top: 5%;
-    width: 70%;
+    margin-top: 10%;
+    width: 60%;
+    
 `
 
 const StyledInfo = styled.span`
-    padding: 10%;
-    margin-top: 10%;
-    margin-bottom: 5%;
+    padding: 2%;
+    margin-top: 5%;
+    margin-bottom: 13%;
 `
 const InfoBoxVertical = () => {
-  return (
-    <StyledInfoFlex>
-        <StyledImage src={infoImage} alt='info' />
-        <StyledInfo>
-            seamless coordination of placement activities. Automate emails and data updates and view history of
-            company activities all from one place. Secure and reliable placement solution which is easy to use and maintain.
-        </StyledInfo>
-    </StyledInfoFlex>
-  )
+//   return (
+//     <StyledInfoFlex>
+//         <StyledImage src={infoImage} alt='info' />
+//         <StyledInfo>
+//             Seamless coordination of placement activities. Automate emails and data updates and view history of
+//             company activities all from one place. Secure and reliable placement solution which is easy to use and maintain.
+//         </StyledInfo>
+//     </StyledInfoFlex>
+//   )
 }
 
 export default InfoBoxVertical

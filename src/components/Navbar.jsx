@@ -9,7 +9,7 @@ const StyledNavContainer = styled.nav`
     gap: 10px;
     align-items: flex-start;
     border-radius: 5px;
-    background-color: #fff5;
+    background-color: #98FB98;
     backdrop-filter: blur(7px);
     padding: 5px;
     
@@ -25,15 +25,19 @@ const StyledLogo = styled.img`
 const StyledLinks = styled.a`
     flex-basis: 15%;
     align-self: center;
+    color: white;
 `
 const StyledNavButton = styled(StyledButton)`
-  height: 10%;
+  height: 15%;
+  width: 8%;;
   align-self: center;
 `
 
 const StyledSpan = styled.span`
   margin-right : auto;
   align-self : center;
+  color: white;
+  font-size: large;
 `
 const Navbar = () => {
   return (

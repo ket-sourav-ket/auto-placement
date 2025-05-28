@@ -21,9 +21,13 @@ const Footer = () => {
         <StyledH2>Site Maintainers</StyledH2>
         <StyledHeadBar width = '15%'/>
         <span>
+            Sourabh Saha
+            <br/>
             Smritikana Bandopadhaya
             <br/>
-            Sourabh Saha
+            Swarnali Dey
+            <br/>
+            Saptarshi Saha
         </span>
     </div>
   )

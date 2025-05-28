@@ -21,7 +21,10 @@ align-items: center;
 const StyledUploadButton = styled(StyledButton)`
   flex-basis: 20%;
   justify-content: center;
+  background-color: #2218ba;
+  color:white;
   align-items: center;
+  border-color: black;
   cursor: pointer;
 `
 
@@ -74,7 +77,7 @@ const Uploader = () => {
         </Form>
         
       </StyledBlueBox>
-      <StyledUploadButton type='button' onClick={handleSubmit}>{"search"}</StyledUploadButton>
+      <StyledUploadButton type='button' onClick={handleSubmit}>{"Search"}</StyledUploadButton>
     </StyledUploadContainer>
   )
 }

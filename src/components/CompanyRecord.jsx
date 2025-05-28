@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { StyledImage,  StyledNameSpan } from './CompanyCard'
 import defaultLogo from '../assets/office-building-svgrepo-com.svg'
 import searchLogo from '../assets/search-alt-2-svgrepo-com.svg' 
+import cognizant from '../assets/cognizant.png'
 
 const StyledRecordView = styled.div`
     display: grid;
@@ -81,11 +82,15 @@ const StyledRow = styled.tr`
 `
 const StyledHeaderImage = styled(StyledImage)`
   margin: 0;
-  padding: 0;
+  padding: 10px;
+  //height: 60%;
 `
 const StyledHeaderNameSpan = styled(StyledNameSpan)`
   margin : 0;
   padding: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-size: 30px;
+  width: 420%;
 `
 const StyledInfoHeader = styled.div`
   display: flex;
@@ -103,8 +108,8 @@ const CompanyRecord = () => {
   return (
     <StyledRecordView>
     
-      <StyledHeaderImage src={defaultLogo} alt='companyLogo' />
-      <StyledHeaderNameSpan>{'Random MNC'}</StyledHeaderNameSpan>
+      <StyledHeaderImage src={cognizant} alt='companyLogo' />
+      <StyledHeaderNameSpan>{'2025 batch Selected Candidates: '}</StyledHeaderNameSpan>
       <StyledSearchBar>
         <StyledSearchImage src={searchLogo} alt='serch-logo' />
         <StyledSearchInput placeholder='Search...' />
@@ -121,32 +126,39 @@ const CompanyRecord = () => {
         </StyledHeader>
         <tbody>
           <StyledRow>
-            <StyledTd>Band</StyledTd>
-            <StyledTd>123456</StyledTd>
-            <StyledTd>MCA</StyledTd>
-            <StyledTd>JSWE</StyledTd>
-            <StyledTd>4.8LPA</StyledTd>
+            <StyledTd>Debrup Nandi</StyledTd>
+            <StyledTd>CSE2021025</StyledTd>
+            <StyledTd>BTech (CSE)</StyledTd>
+            <StyledTd>GEN Z Next</StyledTd>
+            <StyledTd>6.5LPA</StyledTd>
           </StyledRow>
           <StyledRow>
-            <StyledTd>Band</StyledTd>
-            <StyledTd>123456</StyledTd>
-            <StyledTd>MCA</StyledTd>
-            <StyledTd>JSWE</StyledTd>
-            <StyledTd>4.8LPA</StyledTd>
+            <StyledTd>Debdyuti Paul</StyledTd>
+            <StyledTd>IT2021032 </StyledTd>
+            <StyledTd>BTech (IT)</StyledTd>
+            <StyledTd>GEN Z Pro</StyledTd>
+            <StyledTd>5.4LPA</StyledTd>
           </StyledRow>
           <StyledRow>
-            <StyledTd>Band</StyledTd>
-            <StyledTd>123456</StyledTd>
+            <StyledTd>Shruti Shaw</StyledTd>
+            <StyledTd>MCA2023044</StyledTd>
             <StyledTd>MCA</StyledTd>
-            <StyledTd>JSWE</StyledTd>
-            <StyledTd>4.8LPA</StyledTd>
+            <StyledTd>GEN Z Pro</StyledTd>
+            <StyledTd>5.4LPA</StyledTd>
           </StyledRow>
           <StyledRow>
-            <StyledTd>Band</StyledTd>
-            <StyledTd>123456</StyledTd>
+            <StyledTd>Ranajit Samanta</StyledTd>
+            <StyledTd>MCA2023037</StyledTd>
             <StyledTd>MCA</StyledTd>
-            <StyledTd>JSWE</StyledTd>
-            <StyledTd>4.8LPA</StyledTd>
+            <StyledTd>GEN Z</StyledTd>
+            <StyledTd>4LPA</StyledTd>
+          </StyledRow>
+          <StyledRow>
+            <StyledTd>Avik Chakraborty</StyledTd>
+            <StyledTd>MCA2023011</StyledTd>
+            <StyledTd>MCA</StyledTd>
+            <StyledTd>GEN Z</StyledTd>
+            <StyledTd>4LPA</StyledTd>
           </StyledRow>
         </tbody>
       </StyledTableFrame>

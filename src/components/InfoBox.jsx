@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import promo from '../assets/infoImage.png'
+import promo from '../assets/job1 (1).jpeg'
 
 const StyledInfoContainer = styled.div`
     padding-left : 3%;
@@ -57,7 +57,7 @@ const InfoBox = () => {
     <StyledInfoContainer>
             <StyledImage src={promo} alt='promo'/>
             <StyledInfo>
-              seamless coordination of placement activities. Automate emails and data updates and view history of
+              Seamless coordination of placement activities. Automate emails and data updates and view history of
               company activities all from one place. Secure and reliable placement solution which is easy to use and maintain.
             </StyledInfo>
             <StyledSubInfoContainer>
