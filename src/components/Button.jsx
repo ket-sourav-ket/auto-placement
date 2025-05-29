@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 
 export const StyledButton = styled.button`
-    border: solid;
-    border-radius: 3px;
-    background-color: #2218ba;
+    border-radius: 15px;
+    background-color: white;
     padding: 3px;
+    border-color: white;
     display: flex;
-    color: white;
-    border: black;
+    font-family: cursive;
+    color: #7c98ff;
     justify-content: center;
     
 `

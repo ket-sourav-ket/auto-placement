@@ -11,7 +11,7 @@ import CompanyRecord from './components/CompanyRecord'
 import Navbar from './components/Navbar'
 import CompanyBrowser from './components/CompanyBrowser'
 import { StyledHeadBar } from './components/InfoBox'
-import job1 from './assets/gemini1.png'
+import job1 from './assets/greycover.png'
 import uploadImg from './assets/uploaderImg.png'
 import { PacmanLoader } from 'react-spinners'
 
@@ -21,20 +21,22 @@ import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'reac
 
 const StyledAppContainer = styled.div`
   display: grid;
-  /* background: #020024;
-  background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
- /* background-image:url(${job1}); */
+  /*background: #c5ffbc;
+   background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
+  background-image:url(${job1}); 
   grid-template-columns: 25rem 1fr 1fr;
+  background-size: 100%;
+  background-repeat: no-repeat;
   grid-template-rows: 4rem 16rem 1fr 0.2fr 1fr 1fr 0.4fr;
   grid-template-areas:
   'navbar navbar navbar'
-  'hero-img hero-img uploader'
+  'getButton butRight uploader'
   'hero-img hero-img info-box'
   'browser-header empty-header empty-header'
   'browser browser empspace'
   'record record corner'
   'footer footer footer';
-  border-radius: 5px
+  border-radius: 5px;
 `
 const StyledHeroImg = styled.div`
   margin-left: 5%;
@@ -59,7 +61,8 @@ const PositionFooter = styled.div`
   justify-content: center;
   margin: 0;
   grid-area: footer;
-  background-color: #fff5;
+  color: white;
+  background-color: black;
   padding-left : 2.5%;
   backdrop-filter: blur(7px);
   box-shadow: 0 .4rem .8rem #0005;
@@ -76,12 +79,11 @@ const PositionInfoBox = styled.div`
 
 
 const PositionBrowser = styled.div`
-  margin-left: 5%;
-  margin-top: 5%;
+  margin-left: 8%;
+  margin-top: 3%;
   border-radius : 5px;
   grid-area : browser;
-  border-style: solid;
-  border-color : #dcdee0;
+  border: 4px solid  #f7f6f6;
   height: 400px;
   width: 140%;
   overflow-y: auto;
@@ -92,7 +94,8 @@ const BrowserHeader = styled.div`
   margin-bottom: 1.5%;
   padding: 0;
   align-self: end;
-  grid-area: browser-header
+  margin-top: 20%;
+  grid-area: browser-header;
 `
 
 const PositionUploader = styled.div`
@@ -124,6 +127,20 @@ const PositionRecordView = styled.div`
   padding: 1.8%;
 `
 
+const GetStartedButton=styled.button`
+  background-color: black;
+  color: white;
+  height: 20%;
+  width: 50%;
+  border-radius: 10px;
+  margin-top: 70%;
+  margin-left: 25%;
+  color: #7c98ff;
+  font-size: medium;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  grid-area: getButton;
+  
+`
 const UploadDiv = styled.div`
   width: 40%;
   margin-top: 30%;
@@ -190,6 +207,7 @@ export async function sendAction({request , params})
     return redirect(`/search/${fileId}`);
 }
 
+
 const App = () => {
   //const { statusM } = useActionData();
 
@@ -206,9 +224,9 @@ const App = () => {
       <PositionNavBar>
       <Navbar/>
       </PositionNavBar>
-     
+      <GetStartedButton><b>Get Started</b></GetStartedButton>
       
-      <PositionUploader> 
+      {/*  <PositionUploader> 
       <Uploader/>
       <EmailBox list={mailList} />
       <Form onChange={(event)=> event.stopPropagation()} style={{display: 'flex' , flexDirection: 'column' , alignItems: 'stretch'}} method='POST'>
@@ -218,26 +236,29 @@ const App = () => {
           color="#55d3eb"
           size={30}
         /> : 
-        <Button handleClick={(event)=>event.stopPropagation()} type={"submit"}>Send Mail</Button>
+        <Button handleClick={(event)=>event.stopPropagation()} type={"submit"}><b>Send Mail</b></Button>
       }
       </Form>
-      </PositionUploader>
+      </PositionUploader> */}
 
       <PositionInfoBox>
         <InfoBoxVertical/>
       </PositionInfoBox>
       
-      <BrowserHeader>
-        <h3 style={{margin : '0' , padding: '0'}}>Placement History</h3>
-        <StyledHeadBar width = '40%' />
+      <BrowserHeader id="history">
+        <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
+        <StyledHeadBar width = '50%' />
       </BrowserHeader>
+
       <PositionBrowser>
-        <CompanyBrowser/>
+         <CompanyBrowser />
       </PositionBrowser>
+      
       <PositionRecordView>
-        <CompanyRecord />
+          <CompanyRecord />
       </PositionRecordView>
-      <PositionFooter>
+
+      <PositionFooter id="contact">
         <Footer />
       </PositionFooter>
 

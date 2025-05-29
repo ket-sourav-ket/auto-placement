@@ -16,12 +16,13 @@ import nrifintech from '../assets/nri.jpg'
 
 const StyledCompanyContainer = styled.div`
     display: grid;
+    box-sizing: border-box;
     grid-template-columns: 1fr 1fr 1fr;
     border-radius: 5px;
-    background-color: rgb(0 0 0 / 0);
-    padding: 3px;
+    background-color: #98a3ae;
+    padding: 20px;
     width: 100%;
-    gap: 5px;
+    gap: 20px;
 `
 const compList = [{ logo : accenture,
                    name : 'Accenture',

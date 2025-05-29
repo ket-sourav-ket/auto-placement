@@ -43,7 +43,7 @@ const StyledSubInfoContainer = styled.div`
 export const StyledHeadBar = styled.div`
   height: 3px;
   width: ${(props) => props.width};
-  background: linear-gradient(103.22deg, #4b4b4b -13.86%, #019ad6 99.55%);
+  background: linear-gradient(103.22deg, #ffffff -13.86%, #000000 99.55%);
   margin-bottom: 0.25rem;
 `
 

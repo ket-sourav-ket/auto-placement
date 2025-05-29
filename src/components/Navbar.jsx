@@ -5,51 +5,48 @@ import { StyledButton } from './Button'
 
 const StyledNavContainer = styled.nav`
     display: flex;
-    flex-direction: row;
-    gap: 10px;
+    flex-direction: row-reverse;
     align-items: flex-start;
+    justify-content: flex-start;
     border-radius: 5px;
-    background-color: #98FB98;
-    backdrop-filter: blur(7px);
+    color: black;
     padding: 5px;
+      
     
 `
 
-const StyledLogo = styled.img`
-    flex-basis: 2.5%;
-    min-width : 0px;
-    height: auto;
-    border-radius: 50%;
-`
 
 const StyledLinks = styled.a`
-    flex-basis: 15%;
-    align-self: center;
-    color: white;
+    color: black;
+    margin-top: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: large;
+    margin-right: 25px;
+
 `
 const StyledNavButton = styled(StyledButton)`
-  height: 15%;
-  width: 8%;;
-  align-self: center;
+  height: 3%;
+  width: 6%;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: black;
+  border-radius: 10%;
+  margin-right: 40px;
+`
+const Styleda = styled.a`
+  color: Black;
+  text-decoration: none;
+  
 `
 
-const StyledSpan = styled.span`
-  margin-right : auto;
-  align-self : center;
-  color: white;
-  font-size: large;
-`
+
 const Navbar = () => {
   return (
     <StyledNavContainer>
-        <StyledLogo src={logo} alt='logo' />
-        <StyledSpan>{'Automated Placement'}</StyledSpan>
-
-        <StyledLinks>{"About Us"}</StyledLinks>
-        <StyledLinks>{"Contact Us"}</StyledLinks>
-        <StyledLinks>{"Placement History"}</StyledLinks>
-        <StyledNavButton>{"Login/Register"}</StyledNavButton>
-
+      <StyledNavButton><b>{"Login"}</b></StyledNavButton>
+        <StyledLinks><Styleda href="#report"><b>{"Report"}</b></Styleda></StyledLinks> 
+        <StyledLinks><Styleda href="#history"><b>{"History"}</b></Styleda></StyledLinks>
+        <StyledLinks><Styleda href="#contact"><b>{"Contact Us"}</b></Styleda></StyledLinks>      
     </StyledNavContainer>
   )
 }

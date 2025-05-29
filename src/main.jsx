@@ -6,6 +6,8 @@ import { searchAction, searchLoader, sendAction } from './App.jsx'
 import App from './App.jsx'
 import RegForm from './components/RegForm.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
+import Login from './components/Login.jsx'
+import { loginAction, registerAction , loader } from './components/Login.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +27,21 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegForm />,
     errorElement: <ErrorPage />
-  }
+  },
+  {
+    path: "/login",
+    loader: loader,
+    action: loginAction,
+    element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/registerAdmin",
+    loader: loader,
+    action: registerAction,
+    element: <Login />,
+    errorElement: <ErrorPage />
+  },
 ]);
 
 
