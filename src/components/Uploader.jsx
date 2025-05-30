@@ -13,7 +13,7 @@ background-color: #97caf6;
 border-radius: 5px;
 border: dashed;
 margin-left: auto;
-border-color: #075599;
+border-color: #7c98ff;
 justify-content: center;
 align-items: center;
 `
@@ -21,10 +21,17 @@ align-items: center;
 const StyledUploadButton = styled(StyledButton)`
   flex-basis: 20%;
   justify-content: center;
-  background-color: #f4a685;
+  background-color: black;
   color:white;
+  font-family: sans-serif;
   align-items: center;
+  color: #7c98ff;
+  border-radius: 10px;
   border-color: black;
+  &:hover{ color: black;
+           background-color:#cdd3db;
+           border: 1px solid black;
+            };
   cursor: pointer;
 `
 
@@ -32,6 +39,7 @@ const StyledUploadContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
+  background-color: transparent;
   gap: 2px;
 `
 const Uploader = () => {

@@ -4,6 +4,7 @@ import { createBrowserRouter , RouterProvider } from 'react-router'
 import './index.css'
 import { searchAction, searchLoader, sendAction } from './App.jsx'
 import App from './App.jsx'
+import EmailBox from './components/EmailBox.jsx'
 import RegForm from './components/RegForm.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 import Login from './components/Login.jsx'
@@ -14,14 +15,17 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement :  <ErrorPage />,
     loader: searchLoader,
-    action: searchAction
-  },
-  {
-    path: "/search/:fileId",
-    element: <App />,
-    errorElement: <ErrorPage />,
-    loader: searchLoader,
-    action: sendAction
+    action: searchAction,
+    children:[
+      {
+        path: "search/:fileId",
+        element: <EmailBox />,
+        errorElement: <ErrorPage />,
+        loader: searchLoader,
+        action: sendAction
+        
+      }
+    ]
   },
   {
     path: "/register",

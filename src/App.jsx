@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import EmailBox from './components/EmailBox'
 import Student from './components/Student'
 
@@ -19,6 +20,7 @@ import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'reac
 
 
 
+
 const StyledAppContainer = styled.div`
   display: grid;
   /*background: #c5ffbc;
@@ -27,7 +29,7 @@ const StyledAppContainer = styled.div`
   grid-template-columns: 25rem 1fr 1fr;
   background-size: 100%;
   background-repeat: no-repeat;
-  grid-template-rows: 4rem 16rem 1fr 0.2fr 1fr 1fr 0.4fr;
+  grid-template-rows: 4rem 14em 30em 0.2fr 1fr 1fr 0.4fr;
   grid-template-areas:
   'navbar navbar navbar'
   'getButton butRight uploader'
@@ -94,22 +96,20 @@ const BrowserHeader = styled.div`
   margin-bottom: 1.5%;
   padding: 0;
   align-self: end;
-  margin-top: 20%;
+  margin-top: 0%;
   grid-area: browser-header;
 `
 
 const PositionUploader = styled.div`
   display: flex;
-  width: 80%;
+  width: 60%;
   flex-direction: column;
   justify-content: stretch;
-  grid-area: uploader;
-  margin-right: 10%;
-  justify-self: end;
-  margin-bottom: 1.8%;
-
+  grid-area: hero-img;
+  justify-self: start;
+  margin-left: 20px;
+  background-color: transparent;
   border-radius: 5px;
-  box-shadow: 0 .4rem .8rem #0005;
 `
 const StyledLeftImg = styled.img`
   margin-left: 10%;
@@ -130,16 +130,29 @@ const PositionRecordView = styled.div`
 const GetStartedButton=styled.button`
   background-color: black;
   color: white;
-  height: 20%;
-  width: 50%;
-  border-radius: 10px;
-  margin-top: 70%;
-  margin-left: 25%;
+  height: 14%;
+  width: 20%;
+  margin-bottom: 0%;
+  margin-left: 11%;
+  border-radius: 15px;
+  border: 1px solid white;
   color: #7c98ff;
   font-size: medium;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  grid-area: getButton;
-  
+  &:hover{ color: black;
+           background-color:white;
+           border: 1px solid black;
+           cursor: pointer;
+            };
+`
+const StyledLinkButton = styled(Link)`
+  grid-area : hero-img;
+  display: flex;
+  text-decoration: none;
+  min-width: 0px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items:flex-start;
 `
 const UploadDiv = styled.div`
   width: 40%;
@@ -211,35 +224,36 @@ export async function sendAction({request , params})
 const App = () => {
   //const { statusM } = useActionData();
 
-  const navigation = useNavigation();
+  useEffect(()=> {
+    console.log(localStorage.getItem('isLogged'));
+    if(localStorage.getItem('isLogged') === 'true')
+      setIsLogged(true);
+    else 
+      setIsLogged(true);     // changed false to true for testing 
+  });
+  const [isLogged, setIsLogged] = useState( false);
 
-  const { mailList } = useLoaderData();
   
-  console.log("in App component " + typeof mailList);
+
+  
+  
   return (
     <>
     
     <StyledAppContainer>
       
       <PositionNavBar>
-      <Navbar/>
+      <Navbar state={isLogged} setState={setIsLogged}/>
       </PositionNavBar>
-      <GetStartedButton><b>Get Started</b></GetStartedButton>
-      
-      {/*  <PositionUploader> 
+      {isLogged ?
+      <PositionUploader> 
       <Uploader/>
-      <EmailBox list={mailList} />
-      <Form onChange={(event)=> event.stopPropagation()} style={{display: 'flex' , flexDirection: 'column' , alignItems: 'stretch'}} method='POST'>
-      <input name='mails' value={mailList.map((item) => item.personal_mail)} hidden />
-      {navigation.state === 'submitting'? 
-        <PacmanLoader
-          color="#55d3eb"
-          size={30}
-        /> : 
-        <Button handleClick={(event)=>event.stopPropagation()} type={"submit"}><b>Send Mail</b></Button>
+      <Outlet />
+      
+      </PositionUploader>
+      :
+      <StyledLinkButton to="/registerAdmin"><GetStartedButton><b>Get Started</b></GetStartedButton></StyledLinkButton>
       }
-      </Form>
-      </PositionUploader> */}
 
       <PositionInfoBox>
         <InfoBoxVertical/>
@@ -254,9 +268,9 @@ const App = () => {
          <CompanyBrowser />
       </PositionBrowser>
       
-      <PositionRecordView>
+     {/* <PositionRecordView>
           <CompanyRecord />
-      </PositionRecordView>
+      </PositionRecordView> */}
 
       <PositionFooter id="contact">
         <Footer />

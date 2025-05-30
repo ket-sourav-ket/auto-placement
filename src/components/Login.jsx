@@ -22,9 +22,9 @@ export async function loader({request, params}){
 export async function loginAction({request, params}) {
     const formData = await request.formData();
     const loginData = Object.fromEntries(formData);
-    console.log("Inside login action");
+    //console.log("Inside login action");
     console.log(loginData);
-    let response = await fetch(`/UserDtls/${loginData.email}/${loginData.password}`)
+    let response = await fetch(`http://localhost:5173/api/UserDtls/${loginData.email}/${loginData.password}`)
     console.log(response.ok)
     if (response.ok)
     {
@@ -54,7 +54,7 @@ export async function registerAction({request, params}) {
     const formData = await request.formData();
     const userData = Object.fromEntries(formData);
     console.log(userData);
-    let response = await fetch('/register' , {
+    let response = await fetch('http://localhost:5173/api/register' , {
         method: 'POST',
       //  mode:"no-cors",
         headers: {

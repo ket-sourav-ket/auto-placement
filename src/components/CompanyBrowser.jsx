@@ -11,6 +11,8 @@ import infosys from '../assets/infosys.png'
 import ibm from '../assets/ibm.png'
 import cognizant from '../assets/cognizant.png'
 import nrifintech from '../assets/nri.jpg'
+import pwc from '../assets/pwc.jpg'
+import bmc from '../assets/bmc.jpg'
 
 
 
@@ -74,6 +76,16 @@ const compList = [{ logo : accenture,
                    address : '2JXC+5XM Embassy Manyata Business Park, Manyata Tech Park Rd, Manayata Tech Park, Thanisandra, Bengaluru, Karnataka 560045',
                    role: 'Role: Software Engineer',
                    CTC: 'Highest Package: 8 LPA'
+  },              { logo : pwc,
+                   name : 'PwC',
+                   address : 'Pricewaterhouse Coopers Service Delivery Center, Pine Valley, Village, Intermediate Ring Rd, Embassy Golf Links Business Park, Challaghatta, Bengaluru',
+                   role: 'Role: Software Engineer',
+                   CTC: 'Highest Package: 12 LPA'
+  },              { logo : bmc,
+                   name : 'BMC Software',
+                   address : 'Nagarjuna Castle, Wood St, Ashok Nagar, Bengaluru, Karnataka 560025',
+                   role: 'Role: Software Engineer',
+                   CTC: 'Highest Package: 14 LPA'
   },] 
 
 
