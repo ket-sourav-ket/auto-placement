@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import CompanyRecord from './components/CompanyRecord'
 import Navbar from './components/Navbar'
 import CompanyBrowser from './components/CompanyBrowser'
+import DropBox from './components/DropBox'
 import { StyledHeadBar } from './components/InfoBox'
 import job1 from './assets/greycover.png'
 import uploadImg from './assets/uploaderImg.png'
@@ -29,7 +30,7 @@ const StyledAppContainer = styled.div`
   grid-template-columns: 25rem 1fr 1fr;
   background-size: 100%;
   background-repeat: no-repeat;
-  grid-template-rows: 4rem 14em 30em 0.2fr 1fr 1fr 0.4fr;
+  grid-template-rows: 4rem 14em 35em 0.2fr 1fr 1fr 0.4fr;
   grid-template-areas:
   'navbar navbar navbar'
   'getButton butRight uploader'
@@ -86,7 +87,7 @@ const PositionBrowser = styled.div`
   border-radius : 5px;
   grid-area : browser;
   border: 4px solid  #f7f6f6;
-  height: 400px;
+  height: 800px;
   width: 140%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -110,6 +111,7 @@ const PositionUploader = styled.div`
   margin-left: 20px;
   background-color: transparent;
   border-radius: 5px;
+  margin-top: 5%;
 `
 const StyledLeftImg = styled.img`
   margin-left: 10%;
@@ -125,6 +127,10 @@ const PositionNavBar = styled.div`
 const PositionRecordView = styled.div`
   grid-area : record;
   padding: 1.8%;
+`
+const PositionReport = styled.div`
+  margin-top: 5%;
+  grid-area: record;
 `
 
 const GetStartedButton=styled.button`
@@ -224,6 +230,9 @@ export async function sendAction({request , params})
 const App = () => {
   //const { statusM } = useActionData();
 
+  const [selected , setSelected] = useState('null');
+  const streamList = ['CA' , 'CSE' , 'IT' , 'ECE'];
+
   useEffect(()=> {
     console.log(localStorage.getItem('isLogged'));
     if(localStorage.getItem('isLogged') === 'true')
@@ -271,6 +280,10 @@ const App = () => {
      {/* <PositionRecordView>
           <CompanyRecord />
       </PositionRecordView> */}
+
+      <PositionReport>
+        <DropBox selected={selected} setSelected={setSelected} name={'stream'} options={streamList} width={'20%'}/>
+      </PositionReport>
 
       <PositionFooter id="contact">
         <Footer />
