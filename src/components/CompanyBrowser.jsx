@@ -95,7 +95,7 @@ const CompanyBrowser = () => {
      {
       compList.map(item => {
         return(
-          <CompanyCard data={item} />
+          <CompanyCard key={item.name} data={item} />
         )
       })
      }

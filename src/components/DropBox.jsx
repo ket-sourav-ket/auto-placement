@@ -38,6 +38,8 @@ const StyledBox = styled.div`
 `
 
 const DropBoxContainer = styled.div`
+    z-index: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
     width: ${props => props.$width};
@@ -49,6 +51,10 @@ const fadeIN = keyframes`
      }
 `
 const OptionContainer = styled.div`
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    width: 100%;
     display: flex;
     flex-direction : column;
     border-radius: 5px;
@@ -61,12 +67,19 @@ const StyledLabel = styled.label`
   flex-direction: row;
   justify-content: space-between;
 `
+const AllButton = styled.button`
+  border-radius: 5px;
+  cursor: pointer;
+
+`
 const DropBox = ({selected , setSelected , name , options , width}) => {
 
     const createChecks = (options)=>{
         const obj = options.reduce((ob , key) => ({...ob, [key]:false}), {});
         return obj;
     }
+
+    
 
     const countChecks =(checks) =>{
       let count = 0;
@@ -78,6 +91,13 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     }
 
     const[checks , setChecks] = useState(createChecks(options));
+
+    const handleSelectAll = (event)=>{
+      event.stopPropagation();
+      event.preventDefault();
+      const obj = options.reduce((ob , key) => ({...ob, [key]:true}), {});
+      setChecks(obj);
+    }
 
     
 
@@ -103,7 +123,7 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     </StyledBox>
     {selected === name?  
     <OptionContainer>
-                                      <StyledLabel htmlFor='all'>All<input checked={checks[option]} onChange={(event)=> setChecks({...checks, [option]:event.target.checked})} type='checkbox' name='all' value='all'/></StyledLabel>
+            <AllButton onClick={handleSelectAll}>Select All</AllButton>
             {options.map((option) => <StyledLabel htmlFor={option}>{option} <input checked={checks[option]} onChange={(event)=> setChecks({...checks, [option]:event.target.checked})} type='checkbox' name={name} value={option}/></StyledLabel>)}
     </OptionContainer>
     :

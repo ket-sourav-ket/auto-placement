@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import CompanyRecord from './components/CompanyRecord'
 import Navbar from './components/Navbar'
 import CompanyBrowser from './components/CompanyBrowser'
-import DropBox from './components/DropBox'
+import Report from './components/Report'
 import { StyledHeadBar } from './components/InfoBox'
 import job1 from './assets/greycover.png'
 import uploadImg from './assets/uploaderImg.png'
@@ -131,6 +131,7 @@ const PositionRecordView = styled.div`
 const PositionReport = styled.div`
   margin-top: 5%;
   grid-area: record;
+  margin-left: 7.5%;
 `
 
 const GetStartedButton=styled.button`
@@ -230,11 +231,11 @@ export async function sendAction({request , params})
 const App = () => {
   //const { statusM } = useActionData();
 
-  const [selected , setSelected] = useState('null');
-  const streamList = ['CA' , 'CSE' , 'IT' , 'ECE'];
+  
+  
 
   useEffect(()=> {
-    console.log(localStorage.getItem('isLogged'));
+    //console.log(localStorage.getItem('isLogged'));
     if(localStorage.getItem('isLogged') === 'true')
       setIsLogged(true);
     else 
@@ -282,7 +283,7 @@ const App = () => {
       </PositionRecordView> */}
 
       <PositionReport>
-        <DropBox selected={selected} setSelected={setSelected} name={'stream'} options={streamList} width={'20%'}/>
+        <Report />
       </PositionReport>
 
       <PositionFooter id="contact">
