@@ -30,14 +30,13 @@ const StyledAppContainer = styled.div`
   grid-template-columns: 25rem 1fr 1fr;
   background-size: 100%;
   background-repeat: no-repeat;
-  grid-template-rows: 4rem 14em 35em 0.2fr 1fr 1fr 0.4fr;
+  grid-template-rows: 4rem 14em 35em 1fr 1fr 0.4fr;
   grid-template-areas:
   'navbar navbar navbar'
   'getButton butRight uploader'
   'hero-img hero-img info-box'
-  'browser-header empty-header empty-header'
-  'browser browser empspace'
   'record record corner'
+  'browser browser empspace'
   'footer footer footer';
   border-radius: 5px;
 `
@@ -85,20 +84,16 @@ const PositionBrowser = styled.div`
   margin-left: 8%;
   margin-top: 3%;
   border-radius : 5px;
-  grid-area : browser;
+
   border: 4px solid  #f7f6f6;
-  height: 800px;
+  height: 400px;
   width: 140%;
   overflow-y: auto;
   overflow-x: hidden;
 `
-const BrowserHeader = styled.div`
-  margin-left: 5%;
-  margin-bottom: 1.5%;
-  padding: 0;
-  align-self: end;
-  margin-top: 0%;
-  grid-area: browser-header;
+
+const BrowserWrapper = styled.div`
+  grid-area: browser;
 `
 
 const PositionUploader = styled.div`
@@ -124,14 +119,14 @@ const PositionNavBar = styled.div`
   
 `
 
-const PositionRecordView = styled.div`
-  grid-area : record;
-  padding: 1.8%;
-`
+
 const PositionReport = styled.div`
+  width: 140%;
   margin-top: 5%;
+  margin-left: 8%;
+`
+const ReportWrapper = styled.div`
   grid-area: record;
-  margin-left: 7.5%;
 `
 
 const GetStartedButton=styled.button`
@@ -269,22 +264,21 @@ const App = () => {
         <InfoBoxVertical/>
       </PositionInfoBox>
       
-      <BrowserHeader id="history">
-        <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
-        <StyledHeadBar width = '50%' />
-      </BrowserHeader>
-
-      <PositionBrowser>
-         <CompanyBrowser />
+      <BrowserWrapper id='history'>
+      <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
+      <StyledHeadBar width = '20%' />
+      <PositionBrowser >  
+        <CompanyBrowser />
       </PositionBrowser>
-      
-     {/* <PositionRecordView>
-          <CompanyRecord />
-      </PositionRecordView> */}
+      </BrowserWrapper>
 
-      <PositionReport>
-        <Report />
+      <ReportWrapper id='report'>
+        <h2 style={{margin : '0' , padding: '0'}}>Placement Reports</h2>
+        <StyledHeadBar width = '20%' />
+      <PositionReport >
+        <Report/>
       </PositionReport>
+      </ReportWrapper>
 
       <PositionFooter id="contact">
         <Footer />

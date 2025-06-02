@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { keyframes } from 'styled-components'
 import { IoMdCloseCircle } from "react-icons/io";
 import { PiLineVerticalLight } from "react-icons/pi";
+import { IoIosArrowDropdown } from "react-icons/io";
 import { useState } from 'react';
 
 export const useOutsideClick = (callback) => {
@@ -43,6 +44,10 @@ const DropBoxContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: ${props => props.$width};
+    margin-right: 20px;
+    &:last-of-type{
+      margin-right: 0px;
+    }
     
 ` 
 const fadeIN = keyframes`
@@ -74,6 +79,8 @@ const AllButton = styled.button`
 `
 const DropBox = ({selected , setSelected , name , options , width}) => {
 
+  const [open , setOpen] = useState(false);
+
     const createChecks = (options)=>{
         const obj = options.reduce((ob , key) => ({...ob, [key]:false}), {});
         return obj;
@@ -102,7 +109,7 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     
 
     const handleOutsideClick = ()=>{
-        setSelected('null');
+        setOpen(false);
     }
     const ref = useOutsideClick(handleOutsideClick);
 
@@ -110,6 +117,7 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     <DropBoxContainer ref={ref} $width = {width}>
     <StyledBox onMouseOver={()=>{
         setSelected(name);
+        setOpen(true)
     }}>
         <IoMdCloseCircle style={{cursor: 'pointer'}} onClick={(event) => {
             event.preventDefault();
@@ -121,7 +129,7 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
         <PiLineVerticalLight/>
         <span style={{marginRight : '5px'}}>{countChecks(checks)} selected</span>
     </StyledBox>
-    {selected === name?  
+    {open && selected === name?  
     <OptionContainer>
             <AllButton onClick={handleSelectAll}>Select All</AllButton>
             {options.map((option) => <StyledLabel htmlFor={option}>{option} <input checked={checks[option]} onChange={(event)=> setChecks({...checks, [option]:event.target.checked})} type='checkbox' name={name} value={option}/></StyledLabel>)}
@@ -132,5 +140,47 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     </DropBoxContainer>
   )
 }
+
+export const SalaryBox = ({selected , setSelected , name , width})=>{
+  const[open , setOpen] = useState(false);
+  const[salary , setSalary] = useState({low : 0,
+                                        high : 0
+  })
+
+  const handleChange = (event)=>{
+    let name = event.target.name;
+    let value = event.target.value;
+    setSalary({...salary , [name]:value})
+  }
+
+  const handleOutsideClick = ()=>{
+        setOpen(false);
+    }
+    const ref = useOutsideClick(handleOutsideClick);
+
+  return (
+    <DropBoxContainer ref={ref} $width = {width}>
+    <StyledBox onMouseOver={()=>{
+        setSelected(name);
+        setOpen(true);
+
+    }}>
+        {name}
+        <IoIosArrowDropdown />
+        
+    </StyledBox>
+    {open && selected === name?  
+    <OptionContainer>
+      <StyledLabel htmlFor='lowLimit'>Minimum: <input value={salary['low']} onChange={handleChange} type='number' name='low' /></StyledLabel>
+      <StyledLabel htmlFor='highLimit'>Maximum: <input value={salary['high']}onChange={handleChange} type='number' name='high' /></StyledLabel>
+    </OptionContainer>
+    :
+    null
+    }
+    </DropBoxContainer>
+  )
+
+
+} 
 
 export default DropBox
