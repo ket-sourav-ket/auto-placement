@@ -29,7 +29,7 @@ export const useOutsideClick = (callback) => {
 const StyledBox = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-radius: 5px;
     background-color: white;
     color:black;
@@ -56,6 +56,8 @@ const fadeIN = keyframes`
      }
 `
 const OptionContainer = styled.div`
+    padding: 5px;
+    box-sizing: border-box;
     z-index: 2;
     position: absolute;
     top: 20px;
@@ -65,7 +67,7 @@ const OptionContainer = styled.div`
     border-radius: 5px;
     background-color: white;
     opacity: 0;
-    animation: ${fadeIN} 2s forwards;
+    animation: ${fadeIN} 1.4s forwards;
 `
 const StyledLabel = styled.label`
   display: flex;
@@ -77,7 +79,7 @@ const AllButton = styled.button`
   cursor: pointer;
 
 `
-const DropBox = ({selected , setSelected , name , options , width}) => {
+const DropBox = ({selected , setSelected , name , options , width , setSubmitData , submitData}) => {
 
   const [open , setOpen] = useState(false);
 
@@ -85,9 +87,6 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
         const obj = options.reduce((ob , key) => ({...ob, [key]:false}), {});
         return obj;
     }
-
-    
-
     const countChecks =(checks) =>{
       let count = 0;
       for(let key in checks)
@@ -98,6 +97,19 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     }
 
     const[checks , setChecks] = useState(createChecks(options));
+
+    useEffect(( )=>{
+      
+      let checkedList = []
+      for(let key in checks)
+        {
+          if(checks[key])
+              checkedList.push(key);
+        }
+      console.log(checkedList);
+      setSubmitData({...submitData , [name] : checkedList})
+    }, [checks]);
+
 
     const handleSelectAll = (event)=>{
       event.stopPropagation();
@@ -132,7 +144,7 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
     {open && selected === name?  
     <OptionContainer>
             <AllButton onClick={handleSelectAll}>Select All</AllButton>
-            {options.map((option) => <StyledLabel htmlFor={option}>{option} <input checked={checks[option]} onChange={(event)=> setChecks({...checks, [option]:event.target.checked})} type='checkbox' name={name} value={option}/></StyledLabel>)}
+            {options.map((option) => <StyledLabel id={option} htmlFor={option}>{option} <input checked={checks[option]} onChange={(event)=> setChecks({...checks, [option]:event.target.checked})} type='checkbox' name={name} value={option}/></StyledLabel>)}
     </OptionContainer>
     :
     null
@@ -141,22 +153,24 @@ const DropBox = ({selected , setSelected , name , options , width}) => {
   )
 }
 
-export const SalaryBox = ({selected , setSelected , name , width})=>{
+export const SalaryBox = ({selected , setSelected , name , width, submitData , setSubmitData})=>{
   const[open , setOpen] = useState(false);
-  const[salary , setSalary] = useState({low : 0,
-                                        high : 0
+  const[salary , setSalary] = useState({low : '',
+                                        high : ''
   })
 
   const handleChange = (event)=>{
     let name = event.target.name;
     let value = event.target.value;
     setSalary({...salary , [name]:value})
+    setSubmitData({...submitData, [name]: value})
   }
 
   const handleOutsideClick = ()=>{
         setOpen(false);
     }
-    const ref = useOutsideClick(handleOutsideClick);
+
+  const ref = useOutsideClick(handleOutsideClick);
 
   return (
     <DropBoxContainer ref={ref} $width = {width}>
@@ -171,8 +185,8 @@ export const SalaryBox = ({selected , setSelected , name , width})=>{
     </StyledBox>
     {open && selected === name?  
     <OptionContainer>
-      <StyledLabel htmlFor='lowLimit'>Minimum: <input value={salary['low']} onChange={handleChange} type='number' name='low' /></StyledLabel>
-      <StyledLabel htmlFor='highLimit'>Maximum: <input value={salary['high']}onChange={handleChange} type='number' name='high' /></StyledLabel>
+      <StyledLabel htmlFor='lowLimit'>Minimum:  <input style={{minWidth: '0px' , marginLeft: '6px', marginBottom: '5px'}} value={salary['low']} onChange={handleChange} type='number' name='low' /></StyledLabel>
+      <StyledLabel htmlFor='highLimit'>Maximum: <input style={{minWidth: '0px', marginLeft: '3.5px'}} value={salary['high']}onChange={handleChange} type='number' name='high' /></StyledLabel>
     </OptionContainer>
     :
     null

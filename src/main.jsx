@@ -9,6 +9,7 @@ import RegForm from './components/RegForm.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 import Login from './components/Login.jsx'
 import { loginAction, registerAction , loader } from './components/Login.jsx'
+import { reportAction } from './components/Report.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
     loader: loader,
     action: registerAction,
     element: <Login />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/report",
+    action: reportAction,
+    element: <App />,
     errorElement: <ErrorPage />
   },
 ]);

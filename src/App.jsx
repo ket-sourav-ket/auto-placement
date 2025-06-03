@@ -94,6 +94,7 @@ const PositionBrowser = styled.div`
 
 const BrowserWrapper = styled.div`
   grid-area: browser;
+  margin-bottom: 10%;
 `
 
 const PositionUploader = styled.div`
@@ -264,13 +265,7 @@ const App = () => {
         <InfoBoxVertical/>
       </PositionInfoBox>
       
-      <BrowserWrapper id='history'>
-      <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
-      <StyledHeadBar width = '20%' />
-      <PositionBrowser >  
-        <CompanyBrowser />
-      </PositionBrowser>
-      </BrowserWrapper>
+      
 
       <ReportWrapper id='report'>
         <h2 style={{margin : '0' , padding: '0'}}>Placement Reports</h2>
@@ -279,6 +274,14 @@ const App = () => {
         <Report/>
       </PositionReport>
       </ReportWrapper>
+
+      <BrowserWrapper id='history'>
+      <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
+      <StyledHeadBar width = '20%' />
+      <PositionBrowser >  
+        <CompanyBrowser />
+      </PositionBrowser>
+      </BrowserWrapper>
 
       <PositionFooter id="contact">
         <Footer />
