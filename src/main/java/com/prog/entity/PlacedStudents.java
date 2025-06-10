@@ -1,65 +1,53 @@
 package com.prog.entity;
-import java.util.Date;
 import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name="Placed_Students")
 public class PlacedStudents {
 	
-	@Id
-	private String college_roll;
+	public interface ProjectPlacedStudents{
+		String getCollege_roll();
+		String getName();
+		String getGender();
+		String getPersonal_mail();
+		String getDepartment();
+		String getPhone();
+		String getCompany_name();
+		Integer getPlaced_year();
+		Double getCtc();
+	}
 	
-	private String name;
-	private String university_roll;
-	private String personal_mail;
+	@Id
+	private String College_roll;
+	
 	private String company_name;
-	private Date placed_date;
+	private int placed_year;
 	private String job_role;
 	private Double ctc;
 	
-	public PlacedStudents(String college_roll, String name, String university_roll, String personal_mail,
-			String company_name, Date placed_date, String job_role, Double ctc) {
+	@OneToOne
+	@MapsId
+	private StudentDetails studentDtls;
+	public PlacedStudents() {}
+	public PlacedStudents(String college_roll, String company_name, int placed_year, String job_role, Double ctc,
+			StudentDetails studentDtls) {
 		super();
-		this.college_roll = college_roll;
-		this.name = name;
-		this.university_roll = university_roll;
-		this.personal_mail = personal_mail;
+		College_roll = college_roll;
 		this.company_name = company_name;
-		this.placed_date = placed_date;
+		this.placed_year = placed_year;
 		this.job_role = job_role;
 		this.ctc = ctc;
+		this.studentDtls = studentDtls;
 	}
 
 	public String getCollege_roll() {
-		return college_roll;
+		return College_roll;
 	}
 
 	public void setCollege_roll(String college_roll) {
-		this.college_roll = college_roll;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getUniversity_roll() {
-		return university_roll;
-	}
-
-	public void setUniversity_roll(String university_roll) {
-		this.university_roll = university_roll;
-	}
-
-	public String getPersonal_mail() {
-		return personal_mail;
-	}
-
-	public void setPersonal_mail(String personal_mail) {
-		this.personal_mail = personal_mail;
+		College_roll = college_roll;
 	}
 
 	public String getCompany_name() {
@@ -70,12 +58,12 @@ public class PlacedStudents {
 		this.company_name = company_name;
 	}
 
-	public Date getPlaced_date() {
-		return placed_date;
+	public int getPlaced_year() {
+		return placed_year;
 	}
 
-	public void setPlaced_date(Date placed_date) {
-		this.placed_date = placed_date;
+	public void setPlaced_year(int placed_year) {
+		this.placed_year = placed_year;
 	}
 
 	public String getJob_role() {
@@ -94,12 +82,20 @@ public class PlacedStudents {
 		this.ctc = ctc;
 	}
 
+	public StudentDetails getStudentDtls() {
+		return studentDtls;
+	}
+
+	public void setStudentDtls(StudentDetails studentDtls) {
+		this.studentDtls = studentDtls;
+	}
+
 	@Override
 	public String toString() {
-		return "PlacedStudents [college_roll=" + college_roll + ", name=" + name + ", university_roll="
-				+ university_roll + ", personal_mail=" + personal_mail + ", company_name=" + company_name
-				+ ", placed_date=" + placed_date + ", job_role=" + job_role + ", ctc=" + ctc + "]";
+		return "PlacedStudents [College_roll=" + College_roll + ", company_name=" + company_name + ", placed_year="
+				+ placed_year + ", job_role=" + job_role + ", ctc=" + ctc + ", studentDtls=" + studentDtls + "]";
 	}
+	
 	
 	
 }

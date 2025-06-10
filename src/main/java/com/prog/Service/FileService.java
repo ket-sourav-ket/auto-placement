@@ -1,3 +1,4 @@
+
 package com.prog.Service;
 
 import java.io.FileNotFoundException;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Scanner;
 import java.util.regex.*; 
+
 @Service
 public class FileService {
 	private HashMap<String,ArrayList<String>> keywordMap =new HashMap<>();
@@ -35,12 +37,14 @@ public class FileService {
 	private String EDUGAP = "(\\d+) year(s)?";
 	private String PASSOUT = "20\\d{2}?";
 	private String BACKLOG = "no( active)? backlog";
+	
+	
 	@Autowired
 	private DatabaseRepository dbFilerepo;
 	public FileService(){
-		keywordMap.put("stream" , new ArrayList<>(Arrays.asList(new String[] {"IT" , "CSE" , "MCA" , "ECE" , "AI/ML"})));
-		keywordMap.put("degree" , new ArrayList<>(Arrays.asList(new String[] {"MCA" , "BTech" , "BCA" , "MTech" , "B.Sc","BE"})));
-		keywordMap.put("skill" , new ArrayList<>(Arrays.asList(new String[] {"java" , "python" , "sql" , "react" , "node" , "c++" , "angular" , ".net" , "spring" , "django" , "savascript" ,"html" , "css"})));
+		keywordMap.put("stream" , new ArrayList<>(Arrays.asList(new String[] {"IT" , "CSE" ,"EE","DSC", "CA" , "ECE" , "AIML"})));
+		keywordMap.put("degree" , new ArrayList<>(Arrays.asList(new String[] {"MCA" , "BTech" , "BCA" , "MTech" , "BSC"})));
+		keywordMap.put("skill" , new ArrayList<>(Arrays.asList(new String[] {"java" , "python" , "sql" , "react" , "node" , "c++" , "angular" , ".net" , "spring" , "django" , "javascript" ,"html" , "css"})));
 	}
 	
 	// storing the file to database
@@ -66,6 +70,7 @@ public class FileService {
 		
 		FileUpload ff=getFile(fileId);
 		byte[] filebytearray=ff.getOriginalfile();
+		System.out.println("here: " + ff.getDocument_id());
 		
 		// creating a temporary file using create file and then writing PDF bytes to temp file.
 		File tempFile = File.createTempFile("temp", "txt", null);
