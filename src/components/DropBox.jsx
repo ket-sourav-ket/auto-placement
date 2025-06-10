@@ -153,48 +153,4 @@ const DropBox = ({selected , setSelected , name , options , width , setSubmitDat
   )
 }
 
-export const SalaryBox = ({selected , setSelected , name , width, submitData , setSubmitData})=>{
-  const[open , setOpen] = useState(false);
-  const[salary , setSalary] = useState({low : '',
-                                        high : ''
-  })
-
-  const handleChange = (event)=>{
-    let name = event.target.name;
-    let value = event.target.value;
-    setSalary({...salary , [name]:value})
-    setSubmitData({...submitData, [name]: value})
-  }
-
-  const handleOutsideClick = ()=>{
-        setOpen(false);
-    }
-
-  const ref = useOutsideClick(handleOutsideClick);
-
-  return (
-    <DropBoxContainer ref={ref} $width = {width}>
-    <StyledBox onMouseOver={()=>{
-        setSelected(name);
-        setOpen(true);
-
-    }}>
-        {name}
-        <IoIosArrowDropdown />
-        
-    </StyledBox>
-    {open && selected === name?  
-    <OptionContainer>
-      <StyledLabel htmlFor='lowLimit'>Minimum:  <input style={{minWidth: '0px' , marginLeft: '6px', marginBottom: '5px'}} value={salary['low']} onChange={handleChange} type='number' name='low' /></StyledLabel>
-      <StyledLabel htmlFor='highLimit'>Maximum: <input style={{minWidth: '0px', marginLeft: '3.5px'}} value={salary['high']}onChange={handleChange} type='number' name='high' /></StyledLabel>
-    </OptionContainer>
-    :
-    null
-    }
-    </DropBoxContainer>
-  )
-
-
-} 
-
 export default DropBox

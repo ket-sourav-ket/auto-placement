@@ -6,10 +6,11 @@ import { searchAction, searchLoader, sendAction } from './App.jsx'
 import App from './App.jsx'
 import EmailBox from './components/EmailBox.jsx'
 import RegForm from './components/RegForm.jsx'
+import { driveAction } from './components/RegForm.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 import Login from './components/Login.jsx'
 import { loginAction, registerAction , loader } from './components/Login.jsx'
-import { reportAction } from './components/Report.jsx'
+import { reportAction, downloadAction } from './components/Report.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
+    action: driveAction,
     element: <RegForm />,
     errorElement: <ErrorPage />
   },
@@ -51,7 +53,15 @@ const router = createBrowserRouter([
     path: "/report",
     action: reportAction,
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "download",
+        element: <App />,
+        errorElement: <ErrorPage />,
+        action: downloadAction,
+      }
+    ]
   },
 ]);
 

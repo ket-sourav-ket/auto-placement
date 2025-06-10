@@ -7,19 +7,22 @@ const StyledH2 = styled.h2`
     margin-bottom: 0;
     padding: 0;
 `
+const StyledFooterBar = styled(StyledHeadBar)`
+  margin-left : 0px;
+`
 
 const Footer = () => {
   return (
     <div>
         <StyledH2>Contact Us</StyledH2>
-        <StyledHeadBar width = '15%' />
+        <StyledFooterBar width = '15%' />
         <span>
             Mail:  tpo@college.org.import.in
             <br />
             Phone: 789456123
         </span>
         <StyledH2>Site Maintainers</StyledH2>
-        <StyledHeadBar width = '15%'/>
+        <StyledFooterBar width = '15%'/>
         <span>
             Sourabh Saha
             <br/>

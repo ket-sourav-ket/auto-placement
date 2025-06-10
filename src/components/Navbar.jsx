@@ -57,7 +57,7 @@ const StyledNavButton = styled.button`
   margin-right: 40px;
   text-align: center;
   text-decoration: none;
-  color: #7c98ff;
+  color: white;
   border: 1px solid white;
   &:hover{ color: black;
            background-color:white;

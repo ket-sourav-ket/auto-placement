@@ -23,6 +23,7 @@ import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'reac
 
 
 const StyledAppContainer = styled.div`
+  height: 100%;
   display: grid;
   /*background: #c5ffbc;
    background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); */
@@ -30,7 +31,7 @@ const StyledAppContainer = styled.div`
   grid-template-columns: 25rem 1fr 1fr;
   background-size: 100%;
   background-repeat: no-repeat;
-  grid-template-rows: 4rem 14em 35em 1fr 1fr 0.4fr;
+  grid-template-rows: 4rem 14em 35em 0.4fr 0.2fr 0.2fr;
   grid-template-areas:
   'navbar navbar navbar'
   'getButton butRight uploader'
@@ -66,6 +67,7 @@ const PositionFooter = styled.div`
   color: white;
   background-color: black;
   padding-left : 2.5%;
+  padding-bottom: 15px;
   backdrop-filter: blur(7px);
   box-shadow: 0 .4rem .8rem #0005;
   border-bottom-left-radius: 5px;
@@ -84,9 +86,8 @@ const PositionBrowser = styled.div`
   margin-left: 8%;
   margin-top: 3%;
   border-radius : 5px;
-
+  height: 450px;
   border: 4px solid  #f7f6f6;
-  height: 400px;
   width: 140%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -94,6 +95,7 @@ const PositionBrowser = styled.div`
 
 const BrowserWrapper = styled.div`
   grid-area: browser;
+  margin-top: 8%;
   margin-bottom: 10%;
 `
 
@@ -127,6 +129,7 @@ const PositionReport = styled.div`
   margin-left: 8%;
 `
 const ReportWrapper = styled.div`
+  margin-top: 10%;
   grid-area: record;
 `
 
@@ -235,7 +238,7 @@ const App = () => {
     if(localStorage.getItem('isLogged') === 'true')
       setIsLogged(true);
     else 
-      setIsLogged(true);     // changed false to true for testing 
+      setIsLogged(false);     // changed false to true for testing 
   });
   const [isLogged, setIsLogged] = useState( false);
 
@@ -268,7 +271,7 @@ const App = () => {
       
 
       <ReportWrapper id='report'>
-        <h2 style={{margin : '0' , padding: '0'}}>Placement Reports</h2>
+        <h2 style={{margin : '0' , padding: '0' , marginLeft: '20px'}}>Placement Reports</h2>
         <StyledHeadBar width = '20%' />
       <PositionReport >
         <Report/>
@@ -276,7 +279,7 @@ const App = () => {
       </ReportWrapper>
 
       <BrowserWrapper id='history'>
-      <h2 style={{margin : '0' , padding: '0'}}>Placement History</h2>
+      <h2 style={{margin : '0' , padding: '0' , marginLeft: '20px'}}>Placement History</h2>
       <StyledHeadBar width = '20%' />
       <PositionBrowser >  
         <CompanyBrowser />

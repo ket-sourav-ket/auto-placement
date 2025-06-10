@@ -41,6 +41,7 @@ const StyledSubInfoContainer = styled.div`
     grid-area: info;
 `
 export const StyledHeadBar = styled.div`
+  margin-left: 20px;
   height: 3px;
   width: ${(props) => props.width};
   background: linear-gradient(103.22deg, #ffffff -13.86%, #000000 99.55%);

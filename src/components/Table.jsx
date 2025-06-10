@@ -10,7 +10,7 @@ const StyledRecordView = styled.div`
     'records records records';
     align-items: center;
     overflow-y: auto;
-    height: 54%;
+    max-height: 54%;
 `
 
 const StyledTableFrame = styled.table`
@@ -38,7 +38,7 @@ const StyledHeader = styled.thead`
 
 const StyledTh = styled.th`
   border-collapse: collapse;
-  padding: 0.6rem;
+  padding: 0.5rem;
   text-align: left;
 `
 const StyledTd = styled.td`
@@ -65,9 +65,16 @@ const Table = ({list}) => {
     <StyledTableFrame>
         <StyledHeader>
             <StyledRow>
-                <StyledTh>Student Name</StyledTh>
+               {/* <StyledTh>Student Name</StyledTh>
                 <StyledTh>Stream</StyledTh>
-                <StyledTh>Personal Mail</StyledTh>
+                <StyledTh>Personal Mail</StyledTh> */}
+                {
+                  Object.keys(list[0] ?? {}).map(function(value){
+                    return <StyledTh>{value.replace(/_/g , ' ').toUpperCase()}</StyledTh>
+                  })
+                
+                }
+
             </StyledRow>
         </StyledHeader>
         

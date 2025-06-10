@@ -25,7 +25,7 @@ const StyledUploadButton = styled(StyledButton)`
   color:white;
   font-family: sans-serif;
   align-items: center;
-  color: #7c98ff;
+  color: white;
   border-radius: 10px;
   border-color: black;
   &:hover{ color: black;
@@ -79,7 +79,7 @@ const Uploader = () => {
         </>
         )
         }
-        <Form onClick={(eventWrapper)=> eventWrapper.stopPropagation()} onChange={(eventWrapper)=> eventWrapper.stopPropagation()} method='post' encType='multipart/form-data'>
+        <Form onClick={(eventWrapper)=> eventWrapper.stopPropagation()} onChange={(eventWrapper)=> eventWrapper.stopPropagation()} method='post' action='/' encType='multipart/form-data'>
           <input name='files' onChange={handleChange}  ref={inputRef} type='file' accept='.docx,.ppt, .pptx,.txt,.pdf' hidden/>
           <button ref={submitRef} type='submit' hidden/>
         </Form>

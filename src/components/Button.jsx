@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
     border-color: white;
     display: flex;
     font-family: sans-serif;
-    color: #7c98ff;
+    color: white;
     justify-content: center;
     &:hover{ color: black;
            background-color:#cdd3db;
@@ -17,6 +17,8 @@ export const StyledButton = styled.button`
             };
     
 `
+//#7c98ff
+
 const Button = ({children , type , name , value , handleClick}) => {
   return (
     <StyledButton onClick={handleClick} name={name} value={value} type={type}>{children}</StyledButton>
