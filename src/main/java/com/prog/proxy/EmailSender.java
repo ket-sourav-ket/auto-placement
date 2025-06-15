@@ -7,12 +7,13 @@ import jakarta.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 
 public class EmailSender {
+	@SuppressWarnings("unused")
 	private JavaMailSender mailSender;
 
 	public EmailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 		}
-
+}
 //	public void sendEmail(String email, String subject, String content) throws MessagingException, UnsupportedEncodingException {
 //	MimeMessage message = mailSender.createMimeMessage();
 //	MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -23,4 +24,3 @@ public class EmailSender {
 //	helper.setText(content, true);
 //	mailSender.send(message);
 //	}
-}

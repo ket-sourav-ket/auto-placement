@@ -6,20 +6,17 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.text.DocumentException;
 
-import com.prog.entity.PlacedStudents;
 import com.prog.entity.PlacedStudents.ProjectPlacedStudents;
-import com.prog.entity.StudentDetails;
 import com.prog.repository.PlacedStudentsRepository;
 
+import DTO.ProjectedStudents;
 import DTO.ReportRequest;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,28 +33,26 @@ public class ReportService {
         PdfDocument pdfDoc = new PdfDocument(writer);
         Document document = new Document(pdfDoc);
         // Write column names
-       /* 
-        for (String column : header) {
-            Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-            Paragraph paragraph = new Paragraph(column, boldFont);
-            document.add(paragraph);
-        }
-        // writing to the pdf
-        document.add(new Paragraph("\n")); */
+      
         // Write data rows
-        float[] columnWidths = {50 , 50 , 50 , 50 , 50 , 50 , 50 , 50 , 50 , 50};
+        float[] columnWidths = {30 , 30 , 30 , 30 , 30 , 30 , 30 , 30 , 30};
         Table table = new Table(columnWidths);
         
-        String[] headers = new String[]{ "Name" ,"College Roll" , "Gender" , "Personal Mail" , "Stream" , "Phone" , "Company" , "Placed Year"  , "CTC"};
+        String[] headers = new String[]{ "Roll","Name","Gender","Personal Mail","Stream","Phone","Company", "Placed Year" ,"CTC"};
         for(String header : headers) {
         	table.addCell(new Cell().add(new Paragraph(header)));
         }
-        
+       // table.addCell(new Cell().add(new Paragraph(" ")));
         for(ProjectPlacedStudents student : list) {
-        	Field[] fields = student.getClass().getDeclaredFields();
+        	System.out.println(student.getName()+" : "+student.getCollege_roll());
+        	ProjectedStudents tempStudent = new ProjectedStudents(student.getCollege_roll() , student.getName(), student.getGender() , student.getPersonal_mail() , student.getDepartment() , student.getPhone() , student.getCompany_name() , student.getPlaced_year() , student.getCtc());
+        	Field[] fields = tempStudent.getClass().getDeclaredFields();
+        	
         	for (Field field : fields) {
         		field.setAccessible(true);
-        		Object fieldValue = field.get(student);
+        		System.out.println(field.getName());
+        		
+        		Object fieldValue = field.get(tempStudent);
         		table.addCell(new Cell().add(new Paragraph(fieldValue.toString()).setFontSize(8)));
         		
         		}

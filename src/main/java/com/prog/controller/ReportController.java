@@ -2,10 +2,7 @@ package com.prog.controller;
 
 import com.itextpdf.text.DocumentException;
 import com.prog.Service.ReportService;
-import com.prog.entity.PlacedStudents;
 import com.prog.entity.PlacedStudents.ProjectPlacedStudents;
-import com.prog.entity.StudentDetails;
-import com.prog.repository.PlacedStudentsRepository;
 
 import DTO.ReportRequest;
 
@@ -16,14 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class ReportController {

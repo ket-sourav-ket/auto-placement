@@ -8,9 +8,6 @@ import java.util.Map;
 
 import org.apache.tika.exception.TikaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +17,6 @@ import org.xml.sax.SAXException;
 
 import com.prog.Service.EmailService;
 import com.prog.Service.FileService;
-import com.prog.entity.StudentDetails.ProjectStudentDetails;
-import com.prog.proxy.EmailSender;
-
 import DTO.MailReq;
 import DTO.StudentRes;
 import jakarta.mail.MessagingException;

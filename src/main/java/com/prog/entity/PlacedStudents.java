@@ -47,7 +47,7 @@ public class PlacedStudents {
 	}
 
 	public void setCollege_roll(String college_roll) {
-		College_roll = college_roll;
+		this.College_roll = college_roll;
 	}
 
 	public String getCompany_name() {
