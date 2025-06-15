@@ -11,8 +11,8 @@ export const StyledButton = styled.button`
     font-family: sans-serif;
     color: white;
     justify-content: center;
-    &:hover{ color: black;
-           background-color:#cdd3db;
+    &:hover{ color: white;
+           background-color:#7c98ff;
            border: 1px solid black;
             };
     

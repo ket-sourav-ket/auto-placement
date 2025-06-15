@@ -5,6 +5,7 @@ import { Form } from 'react-router'
 const Mylabel=styled.label`
     
     display: flex;
+    font-size: large;
     flex-direction: row;
     justify-content: space-between;
     color: #0a1310;
@@ -38,14 +39,16 @@ const MyButton = styled.button`
 const MyHeading = styled.h2`
   text-align: center;
   background-color: wheat;
-  font-size:180%;
+  font-size:150%;
 `
 const Styledimage = styled.img`
+  min-width: 0px;
+  min-height:0px;
   width: 80%;
 `
 const Myinnerdiv=styled.div`
   background-color: white;
-  padding: 5%;
+  padding: 3%;
   opacity: 100%;
   border-radius: 3%;
   width: 80%;
@@ -59,11 +62,13 @@ const BodyDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   
 `
 const FormDiv = styled(Form)`
 
 width: 100%;
+height: 50%;
   
 `
 const ImageDiv = styled.div`
@@ -109,7 +114,7 @@ const RegForm = () => {
         name="fullname"
       />
       </Mylabel>
-      <br/><br/>
+      <br/>
         <Mylabel>Gender:
         <RadioGroup>
         <MyRadioLabel htmlFor="M">Male</MyRadioLabel>
@@ -121,7 +126,7 @@ const RegForm = () => {
         </RadioGroup>
         </Mylabel>
         
-        <br/><br/>
+        <br/>
 
       <Mylabel>Stream:
       <select name="stream" required>
@@ -135,7 +140,7 @@ const RegForm = () => {
             <option value="EE">EE</option>
       </select>
       </Mylabel>
-      <br/><br/>
+      <br/>
 
       <Mylabel>College Roll:
       <Myinput required
@@ -144,7 +149,7 @@ const RegForm = () => {
         pattern='\d{11}'
       />
       </Mylabel>
-      <br/><br/>
+      <br/>
 
       <Mylabel>University Roll:
       <Myinput required pattern='\d{11}'
@@ -152,7 +157,7 @@ const RegForm = () => {
         name="universityRoll" 
       />
       </Mylabel>
-      <br/><br/>
+      <br/>
 
       <Mylabel>Session:
       <Myinput required placeholder='xxxx-xx' pattern='\d{4}-\d{2}'
@@ -160,7 +165,7 @@ const RegForm = () => {
         name="session"   
       />
       </Mylabel>
-      <br/><br/>
+      <br/>
       <Mylabel>Highest Qualification:
         <select name="qualification" required>
             <option value="Null">Hightest Qualification</option>
@@ -170,14 +175,14 @@ const RegForm = () => {
             <option value="MTech">MTech</option>
         </select>
       </Mylabel>
-      <br/><br/>
+      <br/>
       <Mylabel>Highest Qualification Marks:
         <Myinput placeholder='marks out of hundred' pattern='\d{2}' 
           type="number"
           name="marks" 
         />
         </Mylabel>
-        <br/><br/>
+        <br/>
 
        <Mylabel>Current Backlog:
         <RadioGroup>
@@ -187,7 +192,7 @@ const RegForm = () => {
         <Myinput type="radio" id="no" name="backlogChoice" value={false}/>
         </RadioGroup>
         </Mylabel>
-        <br/><br/>
+        <br/>
 
         <Mylabel>Contact Number:
         <Myinput 
@@ -195,7 +200,7 @@ const RegForm = () => {
           name="contact" 
         />
         </Mylabel>
-        <br/><br/>
+        <br/>
 
         <Mylabel>Willing to Relocate:
         <RadioGroup>
@@ -205,14 +210,14 @@ const RegForm = () => {
         <Myinput type="radio" id="no" name="relocateChoice" value={false}/>
         </RadioGroup>
         </Mylabel>
-        <br/><br/>
+        <br/>
         <Mylabel>Technical Skills:
         <Myinput 
             type="text" 
             name="techSkill" 
           />
         </Mylabel>
-        <br/><br/>
+        <br/>
         <ButtonDiv>
         <MyButton type='submit'>Submit</MyButton>
         <MyButton type='reset'>Reset</MyButton>

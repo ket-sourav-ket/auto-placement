@@ -13,10 +13,10 @@ const StyledReportButton = styled(StyledButton)`
   }
   &:disabled{
     text-decoration: line-through;
-    background-color: grey;
+    background-color: #616161;
     &:hover{
-      background-color: grey;
-      color: #7c98ff;
+      background-color: white;
+      color: black;
       border: 2px outset white;
     }
   }
@@ -199,8 +199,8 @@ const Report = () => {
         
       </FilterContainer>
       <ButtonContainer>
-        <StyledReportButton type='submit'>Search</StyledReportButton>
-        <StyledReportButton disabled = {location.pathname !== '/report'} onClick={handleDownload}>Download PDF</StyledReportButton>
+        <StyledReportButton type='submit'><b>Search</b></StyledReportButton>
+        <StyledReportButton disabled = {location.pathname !== '/report'} onClick={handleDownload}><b>Download PDF</b></StyledReportButton>
       </ButtonContainer>
       </Form>
       <StyledHr />

@@ -29,7 +29,7 @@ const StyledUploadButton = styled(StyledButton)`
   border-radius: 10px;
   border-color: black;
   &:hover{ color: black;
-           background-color:#cdd3db;
+           background-color:white;
            border: 1px solid black;
             };
   cursor: pointer;

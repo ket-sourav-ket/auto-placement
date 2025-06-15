@@ -10,19 +10,18 @@ const StyledRecordView = styled.div`
     'records records records';
     align-items: center;
     overflow-y: auto;
-    max-height: 54%;
+    max-height: 60%;
+    max-width: 160%;
 `
 
 const StyledTableFrame = styled.table`
     background-color: #fff5;
 
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(20px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
-    
     overflow: auto;
     grid-area: records;
-
     border-collapse: collapse;
     
     

@@ -39,9 +39,9 @@ const StyledLink =styled(Link)`
   margin-right: 40px;
   text-align: center;
   text-decoration: none;
-  color: #7c98ff;
+  color: white;
   border: 1px solid white;
-  &:hover{ color: black;
+  &:hover{ color: #7c98ff;
            background-color:white;
            border: 1px solid black;
             };
@@ -60,7 +60,7 @@ const StyledNavButton = styled.button`
   color: white;
   border: 1px solid white;
   &:hover{ color: black;
-           background-color:white;
+           background-color: white;
            border: 1px solid black;
             };
 `
@@ -74,7 +74,7 @@ const Navbar = ({state , setState}) => {
       event.preventDefault();
       localStorage.setItem('isLogged' , 'false');
       setState(false);
-      }}>Log out</StyledNavButton> 
+      }}><b>Log out</b></StyledNavButton> 
                       :
       <StyledLink to="/login"><b>Login</b></StyledLink>
       }

@@ -136,16 +136,15 @@ const ReportWrapper = styled.div`
 const GetStartedButton=styled.button`
   background-color: black;
   color: white;
-  height: 14%;
+  height: 10%;
   width: 20%;
   margin-bottom: 0%;
   margin-left: 11%;
   border-radius: 15px;
   border: 1px solid white;
-  color: #7c98ff;
   font-size: medium;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  &:hover{ color: black;
+  &:hover{ color: #7c98ff;
            background-color:white;
            border: 1px solid black;
            cursor: pointer;
