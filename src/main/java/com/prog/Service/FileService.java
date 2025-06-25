@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.tika.exception.TikaException;
@@ -14,6 +15,10 @@ import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.pdf.PDFParser;
 import org.apache.tika.sax.BodyContentHandler;
+import org.dhatim.fastexcel.reader.Cell;
+import org.dhatim.fastexcel.reader.ReadableWorkbook;
+import org.dhatim.fastexcel.reader.Row;
+import org.dhatim.fastexcel.reader.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -21,11 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
 import com.prog.entity.FileUpload;
+import com.prog.entity.StudentDetails;
 import com.prog.repository.DatabaseRepository;
+import com.prog.repository.StudentDetailsRepository;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.regex.*; 
+import java.util.regex.*;
+import java.util.stream.Stream; 
 
 @Service
 public class FileService {
@@ -38,10 +46,68 @@ public class FileService {
 	
 	@Autowired
 	private DatabaseRepository dbFilerepo;
+	@Autowired
+	private StudentDetailsRepository studentRepo;
 	public FileService(){
 		keywordMap.put("stream" , new ArrayList<>(Arrays.asList(new String[] {"IT" , "CSE" ,"EE","DSC", "CA" , "ECE" , "AIML"})));
 		keywordMap.put("degree" , new ArrayList<>(Arrays.asList(new String[] {"MCA" , "BTech" , "BCA" , "MTech" , "BSC"})));
 		keywordMap.put("skill" , new ArrayList<>(Arrays.asList(new String[] {"java" , "python" , "sql" , "react" , "node" , "c++" , "angular" , ".net" , "spring" , "django" , "javascript" ,"html" , "css"})));
+	}
+	
+	//reading excel file
+	public Map<Integer, List<String>> readExcel(int fileId) throws IOException {
+        Map<Integer, List<String>> data = new HashMap<>();
+        FileUpload ff=getFile(fileId);
+		byte[] filebytearray=ff.getOriginalfile();
+		
+		// creating a temporary file using create file and then writing PDF bytes to temp file.
+		File tempFile = File.createTempFile("temp", "txt", null);
+		
+        FileOutputStream fos = new FileOutputStream(tempFile);
+        fos.write(filebytearray);
+        fos.close();
+        
+        
+        
+        
+		
+        
+        
+
+        try (FileInputStream file = new FileInputStream(tempFile); ReadableWorkbook wb = new ReadableWorkbook(file)) {
+            Sheet sheet = wb.getFirstSheet();
+            try (Stream<Row> rows = sheet.openStream()) {
+                rows.forEach(r -> {
+                    data.put(r.getRowNum(), new ArrayList<>());
+
+                    for (Cell cell : r) {
+                        data.get(r.getRowNum()).add(cell.getRawValue());
+                    }
+                });
+            }
+        }
+
+        return data;
+    }
+	
+	//store excel file to database
+	public void importExcel(int fileId) throws IOException
+	{
+		var excelData = readExcel(fileId);
+		System.out.println(excelData);
+		for(int rowNum : excelData.keySet())
+		{
+			if (rowNum == 1) continue;
+			List<String> cells = excelData.get(rowNum);
+			System.out.println(cells);
+			StudentDetails aStudent = new StudentDetails(cells.get(0),cells.get(1),cells.get(2),cells.get(3),cells.get(4),cells.get(5),cells.get(6),cells.get(7),cells.get(8),Integer.parseInt( cells.get(9) ),Double.parseDouble(cells.get(10)), Double.parseDouble(cells.get(11)), Double.parseDouble(cells.get(12)), Double.parseDouble(cells.get(13)), Integer.parseInt( cells.get(14)), cells.get(15).equals("true")? true:false,cells.get(16) , null);
+			studentRepo.save(aStudent);
+		}
+		
+		dbFilerepo.deleteById(fileId);
+		
+		
+		
 	}
 	
 	// storing the file to database

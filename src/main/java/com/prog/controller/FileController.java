@@ -11,6 +11,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ import com.prog.Service.FileService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class FileController {
 
@@ -69,6 +71,15 @@ public class FileController {
 			.contentType(MediaType.parseMediaType(download.getFiletype()))
 			.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+download.getFilename()+"\"")
 			.body(new ByteArrayResource(download.getOriginalfile()));
+			
+		}
+		
+		@PostMapping("/importExcel")
+		public String importFromExcel(@RequestParam("files") MultipartFile file) throws IOException{
+			
+			FileUpload excelFile=fileservice.storeFile(file);
+			fileservice.importExcel(excelFile.getDocument_id());
+			return "O.K";
 			
 		}
 		

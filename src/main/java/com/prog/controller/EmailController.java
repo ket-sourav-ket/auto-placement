@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.tika.exception.TikaException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import DTO.MailReq;
 import DTO.StudentRes;
 import jakarta.mail.MessagingException;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class EmailController {
 	@Autowired
