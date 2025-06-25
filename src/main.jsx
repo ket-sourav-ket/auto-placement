@@ -11,6 +11,7 @@ import ErrorPage from './components/ErrorPage.jsx'
 import Login from './components/Login.jsx'
 import { loginAction, registerAction , loader } from './components/Login.jsx'
 import { reportAction, downloadAction } from './components/Report.jsx'
+import { importAction } from './components/ExcelUpload.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
         
       }
     ]
+  },
+  {
+    path: "/import",
+    action: importAction,
+    element: <App />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/register",

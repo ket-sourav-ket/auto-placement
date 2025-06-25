@@ -61,7 +61,7 @@ export async function reportAction({request , params}){
   const formData = await request.formData();
   console.log("inside report action");
 
-  let response = await fetch('http://localhost:5173/api/report/search',
+  let response = await fetch(`${BASE}/report/search`,
         {
             method : 'POST',
             body : formData
@@ -79,7 +79,7 @@ export async function downloadAction({request , params}){
   const formData = await request.formData();
   console.log("inside download action");
   
-  let response = await fetch('http://localhost:5173/api/report/download',
+  let response = await fetch(`${BASE}/report/download`,
         {
             method : 'POST',
             body : formData

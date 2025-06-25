@@ -11,13 +11,18 @@ import Footer from './components/Footer'
 import CompanyRecord from './components/CompanyRecord'
 import Navbar from './components/Navbar'
 import CompanyBrowser from './components/CompanyBrowser'
+import ExcelUpload from './components/ExcelUpload'
 import Report from './components/Report'
 import { StyledHeadBar } from './components/InfoBox'
 import job1 from './assets/greycover.png'
 import uploadImg from './assets/uploaderImg.png'
 import { PacmanLoader } from 'react-spinners'
+import { PulseLoader } from 'react-spinners';
 
 import { Outlet,Link , useLoaderData, redirect, Form , useNavigation} from 'react-router-dom'
+
+export const BASE = 'http://3.25.213.216:8060';
+//export const BASE = 'http://localhost:8060';
 
 
 
@@ -173,7 +178,7 @@ export async function searchLoader({request , params})
   let resJson = {}
   console.log("in search loader " + fileId);
   if(fileId){
-  let respone = await fetch(`http://localhost:5173/api/getMails?fileId=${fileId}`);
+  let respone = await fetch(`${BASE}/getMails?fileId=${fileId}`);
   resJson = await respone.json();
   mailList = resJson.mailList;
   }
@@ -186,7 +191,7 @@ export async function searchLoader({request , params})
 export async function searchAction({request, params})
 {
   const formData = await request.formData();
-  let response = await fetch('http://localhost:5173/api/uploadFile',
+  let response = await fetch(`${BASE}/uploadFile`,
         {
             method : 'POST',
             body : formData
@@ -207,7 +212,7 @@ export async function sendAction({request , params})
   let mailList = formData.get('mails').split(",")
   console.log("submit data ")
   console.log(mailList)
-  let response = await fetch('http://localhost:5173/api/sendMails',
+  let response = await fetch(`${BASE}/sendMails`,
                               {
                                 method: 'POST',
                                 headers: {  "Content-Type": "application/json" },
@@ -227,6 +232,8 @@ export async function sendAction({request , params})
 
 
 const App = () => {
+
+  const navigation = useNavigation();
   //const { statusM } = useActionData();
 
   
@@ -256,7 +263,8 @@ const App = () => {
       {isLogged ?
       <PositionUploader> 
       <Uploader/>
-      <Outlet />
+      {navigation.state === 'submitting' ? <PulseLoader />: <Outlet />}
+      <ExcelUpload />
       
       </PositionUploader>
       :

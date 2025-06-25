@@ -3,7 +3,7 @@ import * as Components from './Components';
 import {Outlet, Link, useNavigate,Form, redirect, useLoaderData} from 'react-router-dom';
 import { ScaleLoader } from "react-spinners";
 
-
+import { BASE } from "../App";
 
 export async function loader({request, params}){
 
@@ -24,7 +24,7 @@ export async function loginAction({request, params}) {
     const loginData = Object.fromEntries(formData);
     //console.log("Inside login action");
     console.log(loginData);
-    let response = await fetch(`http://localhost:5173/api/UserDtls/${loginData.email}/${loginData.password}`)
+    let response = await fetch(`${BASE}/UserDtls/${loginData.email}/${loginData.password}`)
     console.log(response.ok)
     if (response.ok)
     {
@@ -54,7 +54,7 @@ export async function registerAction({request, params}) {
     const formData = await request.formData();
     const userData = Object.fromEntries(formData);
     console.log(userData);
-    let response = await fetch('http://localhost:5173/api/register' , {
+    let response = await fetch(`${BASE}/register` , {
         method: 'POST',
       //  mode:"no-cors",
         headers: {

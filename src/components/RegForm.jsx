@@ -82,7 +82,7 @@ const ImageDiv = styled.div`
 export async function driveAction({request , params}){
   const formData = await request.formData();
   
-  let response = await fetch('http://localhost:5173/api/studentRegister',
+  let response = await fetch(`${BASE}/studentRegister`,
         {
             method : 'POST',
             headers: {
